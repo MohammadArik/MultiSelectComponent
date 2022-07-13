@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import MultiSelect from "./components/MultiSelect";
 
 function App() {
+  const [result, setResult] = useState<Array<string>>([]);
+  const options = [
+    "Option 1",
+    "Option 2",
+    "Option 3",
+    "Option 4",
+    "Option 5",
+    "Option 6",
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <MultiSelect options={options} setResult={setResult} />
+      <h2>Selected Options:</h2>
+      <ul>
+        {result.map((value, index) => (
+          <li key={index}>{value}</li>
+        ))}
+      </ul>
     </div>
   );
 }
