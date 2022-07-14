@@ -2,7 +2,7 @@ import { useState } from "react";
 import MultiSelect from "./components/MultiSelect";
 
 function App() {
-  const [result, setResult] = useState<Array<string>>([]);
+  const [result, setResult] = useState([]);
   const options = [
     "Option 1",
     "Option 2",

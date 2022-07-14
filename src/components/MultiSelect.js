@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from "react";
 
-const MultiSelect = ({
-  options,
-  setResult,
-}: {
-  options: Array<string>;
-  setResult: React.Dispatch<React.SetStateAction<string[]>>;
-}) => {
-  const [selectedOptions, setSelectedOptions] = useState<Array<boolean>>(() => {
-    let optionConditions: Array<boolean> = [];
+const MultiSelect = ({ options, setResult }) => {
+  const [selectedOptions, setSelectedOptions] = useState(() => {
+    let optionConditions = [];
     for (let i = 0; i < options.length; i++) {
       optionConditions.push(false);
     }
     return optionConditions;
   });
 
-  useEffect(() => {
-    let newResult: Array<string> = [];
-    options.forEach((value, index) => {
-      if (selectedOptions[index]) {
-        newResult.push(value);
-      }
-    });
-    setResult(newResult);
-  }, [selectedOptions]);
+  useEffect(
+    () => {
+      let newResult = [];
+      options.forEach((value, index) => {
+        if (selectedOptions[index]) {
+          newResult.push(value);
+        }
+      });
+      setResult(newResult);
+    }, // eslint-disable-next-line
+    [selectedOptions]
+  );
 
   const showOptions = () => {
     return options.map((value, index) => {
